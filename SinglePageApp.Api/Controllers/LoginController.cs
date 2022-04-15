@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+using SinglePageApp.Domain.Dto;
+
 namespace SinglePageApp.Api.Controllers
 {
     [Route("api/[controller]")]
@@ -25,14 +27,13 @@ namespace SinglePageApp.Api.Controllers
             return StatusCode(200);
         }
 
-        [HttpPost]
-        public IActionResult Validate(string username, string password)
+        [HttpPost(("validate"))]
+        public IActionResult Validate(LoginDto login)
         {
-            if (_businessManager.Validate(username, password))
+            if (_businessManager.Validate(login.UserName, login.Password))
             {
                 //redirect to profile information page
-
-                return Ok();
+                return StatusCode(200, "Login Successful");
             }
             else
             {
