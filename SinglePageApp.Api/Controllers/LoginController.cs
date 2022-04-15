@@ -6,11 +6,14 @@ using System.Threading.Tasks;
 
 namespace SinglePageApp.Api.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class LoginController : Controller
     {
+        [HttpGet]
         public IActionResult Index()
         {
-            return View();
+            return StatusCode(200);
         }
     }
 }

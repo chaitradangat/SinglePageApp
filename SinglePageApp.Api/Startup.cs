@@ -11,6 +11,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+using SinglePageApp.Services.Database;
+using Microsoft.EntityFrameworkCore;
+
 namespace SinglePageApp.Api
 {
     public class Startup
@@ -25,6 +28,8 @@ namespace SinglePageApp.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<UserContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
             services.AddControllers();
         }
 
