@@ -3,10 +3,12 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace SinglePageApp.Services.Database
+namespace SinglepageApp.Business
 {
-    public interface IDbService
+    public interface IBusinessManager
     {
         public UserInfo GetUserByLogin(string username);
+
+        public bool Validate(string username, string password);
     }
 }

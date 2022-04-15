@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SinglepageApp.Business\SinglepageApp.Business.csproj" />
     <ProjectReference Include="..\SinglePageApp.Services\SinglePageApp.Services.csproj" />
   </ItemGroup>
 

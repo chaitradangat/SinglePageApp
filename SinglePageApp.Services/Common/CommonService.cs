@@ -4,15 +4,13 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace SinglePageApp.Services
+namespace SinglePageApp.Services.Common
 {
     public class CommonService : ICommonService
     {
-        public void EncryptPassword(string password, out string encryptedPassword, out string salt)
+        public string EncryptPassword(string password)
         {
-            encryptedPassword = password;
-
-            salt = "not-implemented";
+            return password;
 
             /*
             byte[] _salt = new byte[128 / 8];
@@ -34,9 +32,9 @@ namespace SinglePageApp.Services
             */
         }
 
-        public void DecryptPassword(string encryptedPassword, string salt, out string password)
+        public string DecryptPassword(string encryptedPassword)
         {
-            password = encryptedPassword;
+            return encryptedPassword;
         }
     }
 }

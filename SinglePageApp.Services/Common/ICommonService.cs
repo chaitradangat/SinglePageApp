@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SinglePageApp.Services
+namespace SinglePageApp.Services.Common
 {
     public interface ICommonService
     {
-        public void EncryptPassword(string password, out string encryptedPassword, out string salt);
+        public string EncryptPassword(string password);
 
-        public void DecryptPassword(string encryptedPassword, string salt, out string password);
+        public string DecryptPassword(string encryptedPassword);
     }
 }

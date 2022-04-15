@@ -11,8 +11,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-using SinglePageApp.Services.Database;
 using Microsoft.EntityFrameworkCore;
+
+using SinglepageApp.Business;
+using SinglePageApp.Services.Common;
+using SinglePageApp.Services.Database;
 
 namespace SinglePageApp.Api
 {
@@ -29,6 +32,12 @@ namespace SinglePageApp.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<UserContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddTransient<IDbService, DbService>();
+
+            services.AddTransient<ICommonService, CommonService>();
+
+            services.AddTransient<IBusinessManager, BusinessManager>();
 
             services.AddControllers();
         }

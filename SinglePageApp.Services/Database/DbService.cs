@@ -25,9 +25,9 @@ namespace SinglePageApp.Services.Database
             return _context.UserInfos.Find(id);
         }
 
-        public void GetUserByLogin(string username)
+        public UserInfo GetUserByLogin(string username)
         {
-            _context.UserInfos.Where(x => x.UserName == username).FirstOrDefault();
+            return _context.UserInfos.Where(x => x.UserName == username).FirstOrDefault();
         }
 
         public void UpdateUsers(List<UserInfo> users)
