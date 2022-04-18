@@ -34,6 +34,16 @@ namespace SinglePageApp.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddPolicy("EnableCORS", builder =>
+                {
+                    builder.AllowAnyOrigin()
+                       .AllowAnyHeader()
+                       .AllowAnyMethod();
+                });
+            });
+
             services.AddAuthentication(opt => {
                 opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -47,9 +57,9 @@ namespace SinglePageApp.Api
                     ValidateLifetime = true,
                     ValidateIssuerSigningKey = true,
 
-                    ValidIssuer = "http://localhost:5000",
-                    ValidAudience = "http://localhost:5000",
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("key123"))
+                    ValidIssuer = "http://localhost:44315",
+                    ValidAudience = "http://localhost:44315",
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("key123abcdefghij"))
                 };
             });
 
@@ -71,6 +81,8 @@ namespace SinglePageApp.Api
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors("EnableCORS");
 
             app.UseHttpsRedirection();
 
