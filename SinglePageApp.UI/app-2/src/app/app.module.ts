@@ -7,10 +7,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RegistrationComponentComponent } from './registration-component/registration-component.component';
 import { LoginComponentComponent } from './login-component/login-component.component';
 
+
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import {MyMaterialModule} from './material.module';
 import {RouterModule, Routes} from '@angular/router';
 import { UserDetailComponentComponent } from './user-detail-component/user-detail-component.component';
 import { HeaderComponent } from './header/header.component';
+
+import { fakeBackendProvider } from './_helpers/FakeBackend';
+import { ErrorInterceptor } from './_helpers/error.interceptor';
+import {JwtInterceptor} from './_helpers/jwt.interceptor';
 
 
 @NgModule({
@@ -35,7 +41,13 @@ import { HeaderComponent } from './header/header.component';
       { path: 'user', component: UserDetailComponentComponent },
     ])
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+
+    // provider used to create fake backend
+    fakeBackendProvider
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
