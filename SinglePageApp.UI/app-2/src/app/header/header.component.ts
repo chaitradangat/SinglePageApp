@@ -2,6 +2,7 @@ import { Component, OnInit,Input } from '@angular/core';
 
 import { Session } from '../Session';
 
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -12,16 +13,24 @@ export class HeaderComponent implements OnInit {
 
   @Input()
   session!: Session;
+
+
+  @Input()
+  public isUserLoggedIn:boolean;
   
-  constructor() { }
+  constructor(private router : Router) { 
+
+    this.isUserLoggedIn = false;
+  }
 
   ngOnInit(): void {
-    this.session = new Session();
 
-    this.session.setLoggedInUser("test","test");
+    this.isUserLoggedIn = localStorage.getItem("user") != null;
   }
   logout(){
-    this.session.logout();    
+    localStorage.clear();    
+
+    this.router.navigate(['/']);
   }
 
 }

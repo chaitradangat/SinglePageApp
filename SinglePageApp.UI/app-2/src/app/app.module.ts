@@ -17,6 +17,7 @@ import { HeaderComponent } from './header/header.component';
 import { fakeBackendProvider } from './_helpers/FakeBackend';
 import { ErrorInterceptor } from './_helpers/error.interceptor';
 import {JwtInterceptor} from './_helpers/jwt.interceptor';
+import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import {JwtInterceptor} from './_helpers/jwt.interceptor';
     RegistrationComponentComponent,
     LoginComponentComponent,
     UserDetailComponentComponent,
-    HeaderComponent
+    HeaderComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +37,7 @@ import {JwtInterceptor} from './_helpers/jwt.interceptor';
 
     RouterModule.forRoot
     ([
-      { path: '', redirectTo: '/', pathMatch: 'full' },
+      { path: '', component: HomeComponent },//pathMatch: 'full' },
       { path: 'register', component: RegistrationComponentComponent },
       { path: 'login', component: LoginComponentComponent },
       { path: 'user', component: UserDetailComponentComponent },

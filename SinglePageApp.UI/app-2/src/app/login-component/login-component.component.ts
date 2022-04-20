@@ -15,8 +15,10 @@ export class LoginComponentComponent implements OnInit {
 
   login()
   {
-    this.router.navigate(['/user']);
+    localStorage.setItem("user","user1");
 
+
+    this.router.navigate(['/user']);
 
     return false;
   }
